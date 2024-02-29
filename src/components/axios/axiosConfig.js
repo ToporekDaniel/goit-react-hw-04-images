@@ -1,5 +1,3 @@
-import PropTypes from 'prop-types';
-
 export function axiosConfig(word, page) {
   return {
     params: {
@@ -14,8 +12,3 @@ export function axiosConfig(word, page) {
     },
   };
 }
-
-axiosConfig.propTypes = {
-  word: PropTypes.string.isRequired,
-  page: PropTypes.number.isRequired,
-};

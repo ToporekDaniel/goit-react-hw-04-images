@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Searchbar } from './searchbar/Searchbar';
 import { ImageGallery } from './imagegallery/ImageGallery';
 import { Button } from './button/Button';
@@ -29,24 +29,31 @@ export const App = () => {
     }
   };
 
-  const handleLoadMore = async () => {
-    // Nie kumam ale sam setState z prev daje błąd za pierwszym wczytaniem
-    const nextPage = page + 1;
+  //ok zmiana strony w asyncu nie wykonywała się przed wykonaniem reszty dlatego było takie dziwne kombinowanie
 
-    setPage(nextPage);
-
-    try {
-      setIsLoading(true);
-
-      const newImages = await getImages(searchV, nextPage);
-
-      setImages(prevImages => [...prevImages, ...newImages]);
-    } catch (error) {
-      console.error('Error in handleLoadMore:', error);
-    } finally {
-      setIsLoading(false);
-    }
+  const handleLoadMore = () => {
+    setPage(prevPage => prevPage + 1);
   };
+
+  useEffect(() => {
+    const getMoreImages = async () => {
+      try {
+        setIsLoading(true);
+
+        const newImages = await getImages(searchV, page);
+
+        setImages(prevImages => [...prevImages, ...newImages]);
+      } catch (error) {
+        console.error('Error in getMoreImages:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    if (searchV && page > 1) {
+      getMoreImages();
+    }
+  }, [searchV, page]);
 
   return (
     <>

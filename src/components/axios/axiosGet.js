@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import axios from 'axios';
 import { axiosConfig } from './axiosConfig';
 
@@ -14,9 +13,4 @@ export const getImages = async (word, page) => {
     console.error('Error:', error);
     throw error;
   }
-};
-
-getImages.propTypes = {
-  word: PropTypes.string.isRequired,
-  page: PropTypes.number.isRequired,
 };

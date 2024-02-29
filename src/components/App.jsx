@@ -5,6 +5,8 @@ import { Button } from './button/Button';
 import { getImages } from './axios/axiosGet';
 import { RotatingLines } from 'react-loader-spinner';
 
+//test bo strona się nie wczytuje
+
 export const App = () => {
   const [searchV, setSearchV] = useState('');
   const [page, setPage] = useState(1);

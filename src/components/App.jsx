@@ -53,7 +53,7 @@ export const App = () => {
     if (searchV && page > 1) {
       getMoreImages();
     }
-  }, [searchV, page]);
+  }, [page]);
 
   return (
     <>

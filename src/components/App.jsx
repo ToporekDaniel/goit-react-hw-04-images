@@ -30,7 +30,7 @@ export const App = () => {
   };
 
   //ok zmiana strony w asyncu nie wykonywała się przed wykonaniem reszty dlatego było takie dziwne kombinowanie
-
+  //zmiana strony odpala efecta a ten doładowanie asynkiem
   const handleLoadMore = () => {
     setPage(prevPage => prevPage + 1);
   };
